@@ -1,0 +1,18 @@
+---
+import { cn } from '@/utils'
+
+const { class: className, as: Tag = 'div', heading, date } = Astro.props
+---
+
+<Tag class={cn(className, 'relative pb-6 last:pb-0')}>
+	<div class='absolute -left-[19px] top-1.5 z-10 h-[9px] w-[9px] rounded-full border-2 border-primary bg-primary-foreground' />
+	<div class='flex flex-col gap-y-1'>
+		<div class='flex flex-col sm:flex-row sm:items-baseline sm:gap-x-2'>
+			<h4 class='font-medium'>{heading}</h4>
+			<span class='whitespace-nowrap text-sm text-muted-foreground'>{date}</span>
+		</div>
+		<div class='text-muted-foreground'>
+			<slot />
+		</div>
+	</div>
+</Tag>

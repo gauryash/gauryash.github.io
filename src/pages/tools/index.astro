@@ -10,6 +10,13 @@ const DESIGN = [
 		href: 'https://www.figma.com/',
 		iconPath: 'figma',
 		iconBgColour: '#000001'
+	},
+	{
+		name: 'Excalidraw',
+		description: 'Whiteboard & Diagrams',
+		href: 'https://excalidraw.com/',
+		iconPath: 'simple-icons:excalidraw',
+		iconBgColour: '#6965DB'
 	}
 ]
 
@@ -34,6 +41,13 @@ const PRODUCTIVITY = [
 		href: 'https://obsidian.md/',
 		iconPath: 'obsidian',
 		iconBgColour: '#7A3EE8'
+	},
+	{
+		name: 'Linear',
+		description: 'Project Management',
+		href: 'https://linear.app/',
+		iconPath: 'simple-icons:linear',
+		iconBgColour: '#5E6AD2'
 	}
 ]
 
@@ -46,16 +60,96 @@ const DEVELOPMENT = [
 		iconBgColour: '#2C2C32'
 	},
 	{
+		name: 'Cursor',
+		description: 'AI-first IDE',
+		href: 'https://cursor.sh/',
+		iconPath: 'simple-icons:cursor',
+		iconBgColour: '#000000'
+	},
+	{
+		name: 'GitHub',
+		description: 'Version Control',
+		href: 'https://github.com/',
+		iconPath: 'simple-icons:github',
+		iconBgColour: '#181717'
+	},
+	{
+		name: 'Python',
+		description: 'Primary Language',
+		href: 'https://www.python.org/',
+		iconPath: 'simple-icons:python',
+		iconBgColour: '#3776AB'
+	},
+	{
+		name: 'Docker',
+		description: 'Containerization',
+		href: 'https://www.docker.com/',
+		iconPath: 'simple-icons:docker',
+		iconBgColour: '#2496ED'
+	},
+	{
+		name: 'Jupyter',
+		description: 'Data Notebooks',
+		href: 'https://jupyter.org/',
+		iconPath: 'simple-icons:jupyter',
+		iconBgColour: '#F37626'
+	},
+	{
 		name: 'ChatGPT',
-		description: 'AI',
+		description: 'AI Assistant',
 		href: 'https://chat.openai.com/',
 		iconPath: 'chatgpt',
 		iconBgColour: '#06A67F'
+	},
+	{
+		name: 'Claude',
+		description: 'AI Assistant',
+		href: 'https://claude.ai/',
+		iconPath: 'simple-icons:anthropic',
+		iconBgColour: '#D97757'
+	}
+]
+
+const AI_ML = [
+	{
+		name: 'Hugging Face',
+		description: 'Models & Datasets',
+		href: 'https://huggingface.co/',
+		iconPath: 'simple-icons:huggingface',
+		iconBgColour: '#FFD21E'
+	},
+	{
+		name: 'PyTorch',
+		description: 'Deep Learning',
+		href: 'https://pytorch.org/',
+		iconPath: 'simple-icons:pytorch',
+		iconBgColour: '#EE4C2C'
+	},
+	{
+		name: 'LangChain',
+		description: 'LLM Framework',
+		href: 'https://www.langchain.com/',
+		iconPath: 'simple-icons:langchain',
+		iconBgColour: '#1C3C3C'
+	},
+	{
+		name: 'Ollama',
+		description: 'Local LLMs',
+		href: 'https://ollama.ai/',
+		iconPath: 'simple-icons:ollama',
+		iconBgColour: '#000000'
+	},
+	{
+		name: 'Weights & Biases',
+		description: 'Experiment Tracking',
+		href: 'https://wandb.ai/',
+		iconPath: 'simple-icons:weightsandbiases',
+		iconBgColour: '#FFBE00'
 	}
 ]
 ---
 
-<PageLayout meta={{ title: 'Home' }}>
+<PageLayout meta={{ title: 'Tools' }}>
 	<div class='w-full'>
 		<Button title='Back' href='/' style='button'>
 			<svg
@@ -82,6 +176,7 @@ const DEVELOPMENT = [
 			<ToolSection title='Design' tools={DESIGN} />
 			<ToolSection title='Productivity' tools={PRODUCTIVITY} />
 			<ToolSection title='Development' tools={DEVELOPMENT} />
+			<ToolSection title='AI / ML' tools={AI_ML} />
 		</div>
 	</div>
 </PageLayout>

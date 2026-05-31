@@ -3,11 +3,11 @@ import type { AstroExpressiveCodeOptions } from 'astro-expressive-code'
 
 export const siteConfig: SiteConfig = {
 	// Used as both a meta property (src/components/BaseHead.astro L:31 + L:49) & the generated satori png (src/pages/og-image/[slug].png.ts)
-	author: 'SRLEOM',
+	author: 'Yash Gaur',
 	// Meta property used to construct the meta title property, found in src/components/BaseHead.astro L:11
-	title: 'astro-theme-resume',
+	title: 'Yash Gaur - Resume',
 	// Meta property used as the default description meta property
-	description: 'The official Astro Resume Theme',
+	description: 'Quantitative Engineer at Futures First specializing in Python and React.js',
 	// HTML lang property, found in src/layouts/Base.astro L:18
 	lang: 'en-GB',
 	// Meta property, found in src/components/BaseHead.astro L:42
