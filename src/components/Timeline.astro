@@ -1,11 +1,9 @@
 ---
 import { cn } from '@/utils'
 
-const { class: className, company } = Astro.props
+const { class: className } = Astro.props
 ---
 
-<div class={cn(className, 'relative pl-7')}>
-	<h3 class='mb-2 text-lg font-medium'>{company}</h3>
-	<div class='absolute bottom-0 left-[7px] top-9 w-0.5 rounded-full bg-border' />
+<div class={cn(className, 'flex flex-col gap-y-5')}>
 	<slot />
 </div>

@@ -12,8 +12,8 @@ import { getAllPosts, sortMDByDate } from '@/utils'
 
 const languages = ['Python']
 const frontend = ['React.js']
-const backend = ['C++',"python","Go"]
-const others = ['Data Analysis','Algorithmic Trading', 'Quantitative Analysis',"HFT"]
+const backend = ['C++', 'Go']
+const others = ['Data Analysis', 'Algorithmic Trading', 'Quantitative Analysis', 'HFT']
 
 const MAX_POSTS = 10
 const allPosts = await getAllPosts()
@@ -23,16 +23,9 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 <PageLayout meta={{ title: 'Home' }}>
 	<div class='flex w-full flex-col gap-y-10'>
 		<section class='flex flex-col items-center gap-y-7'>
-			<!-- <Image
-				src={astro}
-				alt='Yash Gaur'
-				class='h-28 w-auto rounded-full bg-[#FFBE98] p-2'
-				loading='eager'
-			/> -->
-
 			<div class='flex flex-col items-center gap-y-4'>
-				<h1 class='text-3xl font-bold'>Yash Gaur</h1>
-				<p class='text-lg text-muted-foreground'>Quantitative Engineer at Futures First</p>
+				<h1 class='text-4xl font-bold'>Yash Gaur</h1>
+				<p class='text-lg'>Quantitative Engineer at Futures First</p>
 				<div class='flex flex-wrap justify-center gap-x-7 gap-y-3'>
 					<Label title='Jaipur, Rajasthan'>
 						<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='h-5 w-5' slot='icon'
@@ -73,7 +66,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 
 		<Section title='About'>
 			<p class='text-muted-foreground'>
-				I am a Computer Science graduate currently working as a Data Analyst at Futures First.
+				I am a Computer Science graduate currently working as a Quantitative Engineer at Futures First.
 				I specialize in using Python and React.js for data manipulation and dashboard creation.
 				With extensive experience in collecting, organizing, and interpreting various types of data
 				and statistical figures, I am highly analytical and process-oriented.
@@ -81,8 +74,9 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 		</Section>
 
 		<Section title='Experience'>
-			<Timeline company='Futures First'>
+			<Timeline>
 				<TimelineItem
+					eyebrow='Futures First'
 					heading='Quantitative Engineer'
 					date='Sep 2023 - Present'
 				>
@@ -91,6 +85,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 					</ul>
 				</TimelineItem>
 				<TimelineItem
+					eyebrow='Futures First'
 					heading='Quant & Algo Intern'
 					date='Apr 2023 - Sep 2023'
 				>
@@ -101,26 +96,15 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 			</Timeline>
 		</Section>
 
-		<!-- <Section title='Education'>
-			<Card
-				heading='Great Learning'
-			/>
-			<Card
-				heading='Poornima College of Engineering'
-			/>
-		</Section> -->
-
 		<Section title='Projects'>
 			<div class='flex flex-col gap-y-3 sm:flex-row sm:gap-x-3 sm:gap-y-0'>
 				<ProjectCard
-					href='#'
 					heading='HFT Order Book Analysis'
 					subheading='Real-time market data processing and order book visualization'
 					altText='HFT Project'
 					class='w-full sm:w-1/2'
 				/>
 				<ProjectCard
-					href='#'
 					heading='Quantitative Trading Strategy'
 					subheading='Algorithmic trading bot with backtesting engine'
 					altText='Quant Trading'

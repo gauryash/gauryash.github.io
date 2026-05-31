@@ -1,17 +1,44 @@
 ---
 import { cn } from '@/utils'
 
-const { class: className, as: Tag = 'div', heading, date } = Astro.props
+const {
+  class: className,
+  as: Tag = 'article',
+  heading,
+  date,
+  eyebrow,
+} = Astro.props
 ---
 
-<Tag class={cn(className, 'relative pb-6 last:pb-0')}>
-	<div class='absolute -left-[19px] top-1.5 z-10 h-[9px] w-[9px] rounded-full border-2 border-primary bg-primary-foreground' />
-	<div class='flex flex-col gap-y-1'>
-		<div class='flex flex-col sm:flex-row sm:items-baseline sm:gap-x-2'>
-			<h4 class='font-medium'>{heading}</h4>
-			<span class='whitespace-nowrap text-sm text-muted-foreground'>{date}</span>
+<Tag class={cn('relative pl-8 sm:pl-10', className)}>
+	<!-- vertical line -->
+	<div class='absolute left-[10px] top-0 bottom-0 w-px bg-border/80' />
+
+	<!-- dot -->
+	<div class='absolute left-[4px] top-2 z-10 h-3 w-3 rounded-full bg-primary ring-4 ring-background shadow-sm' />
+
+	<div class='group rounded-2xl border border-border/60 bg-background/40 p-4 sm:p-5 transition-all duration-300 hover:border-border hover:bg-background/60 hover:shadow-sm'>
+		<div class='flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-4'>
+			<div class='min-w-0'>
+				{eyebrow && (
+					<p class='mb-1 text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground'>
+						{eyebrow}
+					</p>
+				)}
+
+				<h4 class='text-base font-semibold leading-tight text-foreground sm:text-lg'>
+					{heading}
+				</h4>
+			</div>
+
+			{date && (
+				<span class='inline-flex shrink-0 items-center rounded-full border border-border/70 bg-muted/40 px-3 py-1 text-xs font-medium text-muted-foreground'>
+					{date}
+				</span>
+			)}
 		</div>
-		<div class='text-muted-foreground'>
+
+		<div class='mt-3 text-sm leading-7 text-muted-foreground sm:text-[15px]'>
 			<slot />
 		</div>
 	</div>
