@@ -3,148 +3,127 @@ import PageLayout from '@/layouts/BaseLayout.astro'
 import ToolSection from '@/components/ToolSection.astro'
 import Button from '@/components/Button.astro'
 
-const DESIGN = [
-	{
-		name: 'Figma',
-		description: 'Design Tool',
-		href: 'https://www.figma.com/',
-		iconPath: 'figma',
-		iconBgColour: '#000001'
-	},
-	{
-		name: 'Excalidraw',
-		description: 'Whiteboard & Diagrams',
-		href: 'https://excalidraw.com/',
-		iconPath: 'simple-icons:excalidraw',
-		iconBgColour: '#6965DB'
-	}
-]
-
-const PRODUCTIVITY = [
-	{
-		name: 'Arc',
-		description: 'Browser',
-		href: 'https://arc.net/',
-		iconPath: 'arc',
-		iconBgColour: '#414350'
-	},
-	{
-		name: 'Notion',
-		description: 'Note Taking',
-		href: 'https://www.notion.so/product',
-		iconPath: 'notion',
-		iconBgColour: '#EFEFEE'
-	},
-	{
-		name: 'Obsidian',
-		description: 'Long-form Writing',
-		href: 'https://obsidian.md/',
-		iconPath: 'obsidian',
-		iconBgColour: '#7A3EE8'
-	},
-	{
-		name: 'Linear',
-		description: 'Project Management',
-		href: 'https://linear.app/',
-		iconPath: 'simple-icons:linear',
-		iconBgColour: '#5E6AD2'
-	}
-]
-
-const DEVELOPMENT = [
-	{
-		name: 'VS Code',
-		description: 'IDE',
-		href: 'https://code.visualstudio.com/',
-		iconPath: 'vscode',
-		iconBgColour: '#2C2C32'
-	},
-	{
-		name: 'Cursor',
-		description: 'AI-first IDE',
-		href: 'https://cursor.sh/',
-		iconPath: 'simple-icons:cursor',
-		iconBgColour: '#000000'
-	},
-	{
-		name: 'GitHub',
-		description: 'Version Control',
-		href: 'https://github.com/',
-		iconPath: 'simple-icons:github',
-		iconBgColour: '#181717'
-	},
+const LANGUAGES = [
 	{
 		name: 'Python',
-		description: 'Primary Language',
+		description: 'Data analysis, scripting, automation',
 		href: 'https://www.python.org/',
 		iconPath: 'simple-icons:python',
 		iconBgColour: '#3776AB'
 	},
 	{
+		name: 'TypeScript',
+		description: 'Type-safe JavaScript for web apps',
+		href: 'https://www.typescriptlang.org/',
+		iconPath: 'simple-icons:typescript',
+		iconBgColour: '#3178C6'
+	},
+	{
+		name: 'C++',
+		description: 'Low-latency systems and HFT tooling',
+		href: 'https://en.cppreference.com/',
+		iconPath: 'simple-icons:cplusplus',
+		iconBgColour: '#00599C'
+	},
+	{
+		name: 'Go',
+		description: 'Concurrent data pipeline services',
+		href: 'https://go.dev/',
+		iconPath: 'simple-icons:go',
+		iconBgColour: '#00ADD8'
+	}
+]
+
+const FRAMEWORKS = [
+	{
+		name: 'React',
+		description: 'Interactive dashboard UIs',
+		href: 'https://react.dev/',
+		iconPath: 'simple-icons:react',
+		iconBgColour: '#61DAFB'
+	},
+	{
+		name: 'Astro',
+		description: 'This site — static content framework',
+		href: 'https://astro.build/',
+		iconPath: 'simple-icons:astro',
+		iconBgColour: '#BC52EE'
+	},
+	{
+		name: 'Tailwind CSS',
+		description: 'Utility-first styling',
+		href: 'https://tailwindcss.com/',
+		iconPath: 'simple-icons:tailwindcss',
+		iconBgColour: '#06B6D4'
+	},
+	{
+		name: 'Node.js',
+		description: 'JavaScript runtime',
+		href: 'https://nodejs.org/',
+		iconPath: 'simple-icons:nodedotjs',
+		iconBgColour: '#5FA04E'
+	}
+]
+
+const DEVTOOLS = [
+	{
+		name: 'VS Code',
+		description: 'Primary editor',
+		href: 'https://code.visualstudio.com/',
+		iconPath: 'vscode',
+		iconBgColour: '#2C2C32'
+	},
+	{
+		name: 'Git',
+		description: 'Version control',
+		href: 'https://git-scm.com/',
+		iconPath: 'simple-icons:git',
+		iconBgColour: '#F05032'
+	},
+	{
 		name: 'Docker',
-		description: 'Containerization',
+		description: 'Containerized deployments',
 		href: 'https://www.docker.com/',
 		iconPath: 'simple-icons:docker',
 		iconBgColour: '#2496ED'
 	},
 	{
+		name: 'Linux',
+		description: 'Daily driver OS',
+		href: 'https://kernel.org/',
+		iconPath: 'simple-icons:linux',
+		iconBgColour: '#FCC624'
+	},
+	{
+		name: 'Bash',
+		description: 'Shell scripting and automation',
+		href: 'https://www.gnu.org/software/bash/',
+		iconPath: 'simple-icons:gnubash',
+		iconBgColour: '#4EAA25'
+	}
+]
+
+const DATA = [
+	{
+		name: 'SQL',
+		description: 'Data querying and analysis',
+		href: 'https://www.postgresql.org/',
+		iconPath: 'simple-icons:postgresql',
+		iconBgColour: '#4169E1'
+	},
+	{
 		name: 'Jupyter',
-		description: 'Data Notebooks',
+		description: 'Exploratory data analysis',
 		href: 'https://jupyter.org/',
 		iconPath: 'simple-icons:jupyter',
 		iconBgColour: '#F37626'
 	},
 	{
-		name: 'ChatGPT',
-		description: 'AI Assistant',
-		href: 'https://chat.openai.com/',
-		iconPath: 'chatgpt',
-		iconBgColour: '#06A67F'
-	},
-	{
-		name: 'Claude',
-		description: 'AI Assistant',
-		href: 'https://claude.ai/',
-		iconPath: 'simple-icons:anthropic',
-		iconBgColour: '#D97757'
-	}
-]
-
-const AI_ML = [
-	{
-		name: 'Hugging Face',
-		description: 'Models & Datasets',
-		href: 'https://huggingface.co/',
-		iconPath: 'simple-icons:huggingface',
-		iconBgColour: '#FFD21E'
-	},
-	{
-		name: 'PyTorch',
-		description: 'Deep Learning',
-		href: 'https://pytorch.org/',
-		iconPath: 'simple-icons:pytorch',
-		iconBgColour: '#EE4C2C'
-	},
-	{
-		name: 'LangChain',
-		description: 'LLM Framework',
-		href: 'https://www.langchain.com/',
-		iconPath: 'simple-icons:langchain',
-		iconBgColour: '#1C3C3C'
-	},
-	{
-		name: 'Ollama',
-		description: 'Local LLMs',
-		href: 'https://ollama.ai/',
-		iconPath: 'simple-icons:ollama',
-		iconBgColour: '#000000'
-	},
-	{
-		name: 'Weights & Biases',
-		description: 'Experiment Tracking',
-		href: 'https://wandb.ai/',
-		iconPath: 'simple-icons:weightsandbiases',
-		iconBgColour: '#FFBE00'
+		name: 'GitHub Actions',
+		description: 'CI/CD for this site',
+		href: 'https://github.com/features/actions',
+		iconPath: 'simple-icons:githubactions',
+		iconBgColour: '#2088FF'
 	}
 ]
 ---
@@ -169,14 +148,14 @@ const AI_ML = [
 
 		<div class='mt-5 flex w-full flex-col gap-y-10'>
 			<div>
-				<h1 class='mb-1 text-2xl font-bold'>Tools</h1>
-				<p>Tools and software I use daily</p>
+				<h1 class='mb-1 text-2xl font-bold' style='text-wrap: balance'>Tools</h1>
+				<p>Languages, frameworks, and tools I use across quant engineering and web development</p>
 			</div>
 
-			<ToolSection title='Design' tools={DESIGN} />
-			<ToolSection title='Productivity' tools={PRODUCTIVITY} />
-			<ToolSection title='Development' tools={DEVELOPMENT} />
-			<ToolSection title='AI / ML' tools={AI_ML} />
+			<ToolSection title='Languages' tools={LANGUAGES} />
+			<ToolSection title='Frameworks' tools={FRAMEWORKS} />
+			<ToolSection title='Dev Tools' tools={DEVTOOLS} />
+			<ToolSection title='Data & Infrastructure' tools={DATA} />
 		</div>
 	</div>
 </PageLayout>
