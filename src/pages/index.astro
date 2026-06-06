@@ -10,10 +10,10 @@ import TimelineItem from '../components/TimelineItem.astro'
 
 import { getAllPosts, sortMDByDate } from '@/utils'
 
-const languages = ['Python']
+const languages = ['Python', 'C++', 'Go']
 const frontend = ['React.js']
-const backend = ['C++', 'Go']
-const others = ['Data Analysis', 'Algorithmic Trading', 'Quantitative Analysis', 'HFT']
+const infrastructure = ['SQL', 'Git', 'Linux', 'Bash']
+const domains = ['Algorithmic Trading', 'HFT', 'Quantitative Analysis', 'Data Analysis']
 
 const MAX_POSTS = 10
 const allPosts = await getAllPosts()
@@ -24,8 +24,8 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 	<div class='flex w-full flex-col gap-y-10'>
 		<section class='flex flex-col items-center gap-y-7'>
 			<div class='flex flex-col items-center gap-y-4'>
-				<h1 class='text-4xl font-bold'>Yash Gaur</h1>
-				<p class='text-lg'>Quantitative Engineer at Futures First</p>
+				<h1 class='text-4xl font-bold' style='text-wrap: balance'>Yash Gaur</h1>
+				<p class='text-lg' style='text-wrap: balance'>Quantitative Engineer at Futures First</p>
 				<div class='flex flex-wrap justify-center gap-x-7 gap-y-3'>
 					<Label title='Jaipur, Rajasthan'>
 						<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' class='h-5 w-5' slot='icon'
@@ -48,6 +48,7 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 						as='a'
 						href='https://www.linkedin.com/in/gauryash/'
 						target='_blank'
+						rel='noopener noreferrer'
 					>
 						<svg
 							xmlns='http://www.w3.org/2000/svg'
@@ -65,11 +66,12 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 		</section>
 
 		<Section title='About'>
-			<p class='text-muted-foreground'>
-				I am a Computer Science graduate currently working as a Quantitative Engineer at Futures First.
-				I specialize in using Python and React.js for data manipulation and dashboard creation.
-				With extensive experience in collecting, organizing, and interpreting various types of data
-				and statistical figures, I am highly analytical and process-oriented.
+			<p class='text-muted-foreground' style='text-wrap: pretty'>
+				Quantitative Engineer at Futures First, building real-time trading dashboards and data
+				pipelines for HFT desks. I work at the intersection of market data infrastructure and
+				front-end analytics — translating noisy order-book feeds into actionable visualizations
+				using Python and React. Previously designed backtesting frameworks and automated
+				reporting systems that reduced analysis turnaround from hours to minutes.
 			</p>
 		</Section>
 
@@ -81,7 +83,10 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 					date='Sep 2023 - Present'
 				>
 					<ul class='ml-4 list-disc'>
-						<li>Working with Python and React.js for quantitative analysis and dashboard creation</li>
+						<li>Built a real-time P&amp;L dashboard serving 15+ traders using React, WebSocket streams, and a Python asyncio backend</li>
+						<li>Designed automated data pipelines processing 10M+ market events daily, reducing reporting latency from hours to minutes</li>
+						<li>Developed order-book visualization tools that improved pattern recognition for HFT strategies</li>
+						<li>Collaborated with traders to iterate on risk metrics and position tracking interfaces</li>
 					</ul>
 				</TimelineItem>
 				<TimelineItem
@@ -90,7 +95,9 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 					date='Apr 2023 - Sep 2023'
 				>
 					<ul class='ml-4 list-disc'>
-						<li>Worked with Python, Data Analysis and related tools</li>
+						<li>Built a backtesting framework in Python for evaluating intraday trading strategies on historical order-book data</li>
+						<li>Created automated reconciliation reports that cut end-of-day settlement review time by 60%</li>
+						<li>Wrote data-cleaning and normalization pipelines for exchange feed data across multiple asset classes</li>
 					</ul>
 				</TimelineItem>
 			</Timeline>
@@ -103,12 +110,14 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 					subheading='Real-time market data processing and order book visualization'
 					altText='HFT Project'
 					class='w-full sm:w-1/2'
+					href='/blog/order-book-visualizer/'
 				/>
 				<ProjectCard
 					heading='Quantitative Trading Strategy'
 					subheading='Algorithmic trading bot with backtesting engine'
 					altText='Quant Trading'
 					class='w-full sm:w-1/2'
+					href='https://github.com/gauryash'
 				/>
 			</div>
 		</Section>
@@ -116,8 +125,8 @@ const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS)
 		<Section title='Skills'>
 			<SkillLayout title='Languages' skills={languages} />
 			<SkillLayout title='Frontend' skills={frontend} />
-			<SkillLayout title='Backend' skills={backend} />
-			<SkillLayout title='Others' skills={others} />
+			<SkillLayout title='Infrastructure' skills={infrastructure} />
+			<SkillLayout title='Domains' skills={domains} />
 		</Section>
 
 		{

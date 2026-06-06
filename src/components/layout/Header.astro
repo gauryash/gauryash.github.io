@@ -1,5 +1,5 @@
 ---
-
+const pathname = Astro.url.pathname
 ---
 
 <header class='mb-12 flex w-full flex-wrap pb-3 text-sm sm:flex-nowrap sm:justify-start'>
@@ -12,14 +12,16 @@
 		<div class='flex flex-row items-center justify-center gap-x-5 sm:gap-x-7'>
 				<a
 				href='/blog'
-				class='flex-none py-2 text-[1.05rem] font-medium hover:text-foreground/75'
+				class={'flex-none py-2 text-[1.05rem] font-medium transition-all hover:text-foreground/75 ' + (pathname.startsWith('/blog') ? 'text-foreground underline underline-offset-4' : 'text-muted-foreground')}
 				aria-label='Nav Menu Item'
+				aria-current={pathname.startsWith('/blog') ? 'page' : undefined}
 				>Blog
 			</a>
 			<a
 				href='/tools'
-				class='flex-none py-2 text-[1.05rem] font-medium hover:text-foreground/75'
+				class={'flex-none py-2 text-[1.05rem] font-medium transition-all hover:text-foreground/75 ' + (pathname.startsWith('/tools') ? 'text-foreground underline underline-offset-4' : 'text-muted-foreground')}
 				aria-label='Nav Menu Item'
+				aria-current={pathname.startsWith('/tools') ? 'page' : undefined}
 				>Tools
 			</a>
 
