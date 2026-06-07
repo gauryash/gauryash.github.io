@@ -1,0 +1,65 @@
+---
+import { getCollection } from 'astro:content'
+
+import PageLayout from '@/layouts/BaseLayout.astro'
+import Button from '@/components/Button.astro'
+
+const projects = await getCollection('project')
+const sortedProjects = projects.sort((a, b) => {
+	const aDate = new Date(a.data.publishDate).valueOf()
+	const bDate = new Date(b.data.publishDate).valueOf()
+	return bDate - aDate
+})
+---
+
+<PageLayout meta={{ title: 'Projects' }}>
+	<div class='w-full'>
+		<Button title='Back' href='/' style='button'>
+			<svg
+				xmlns='http://www.w3.org/2000/svg'
+				width='14'
+				height='14'
+				viewBox='0 0 24 24'
+				slot='icon-before'
+			>
+				<path
+					fill='currentColor'
+					d='m6.921 12.5l5.792 5.792L12 19l-7-7l7-7l.713.708L6.921 11.5H19v1z'
+				>
+				</path>
+			</svg>
+		</Button>
+
+		<div class='mt-5 flex w-full flex-col gap-y-10'>
+			<div>
+				<h1 class='mb-1 text-2xl font-bold' style='text-wrap: balance'>Projects</h1>
+				<p class='text-muted-foreground'>Case studies and technical deep-dives on projects I've built</p>
+			</div>
+
+			<div class='grid grid-cols-1 gap-x-4 gap-y-4 sm:grid-cols-2'>
+				{sortedProjects.map((project) => (
+					<a
+						href={`/projects/${project.slug}/`}
+						class='flex flex-col gap-y-3 rounded-2xl border border-border bg-primary-foreground px-5 py-5 transition-all hover:border-foreground/25 hover:shadow-sm'
+					>
+						<div class='flex flex-col gap-y-1.5'>
+							<h2 class='text-lg font-medium' style='text-wrap: balance'>{project.data.title}</h2>
+							<p class='text-sm text-muted-foreground' style='text-wrap: pretty'>{project.data.description}</p>
+						</div>
+						<div class='mt-auto flex flex-wrap gap-x-2 gap-y-1.5'>
+							{project.data.techStack.map((tech) => (
+								<span class='inline-flex rounded-md border border-border bg-muted px-2 py-0.5 text-xs font-medium text-muted-foreground'>
+									{tech}
+								</span>
+							))}
+						</div>
+					</a>
+				))}
+			</div>
+
+			{sortedProjects.length === 0 && (
+				<p class='text-center text-muted-foreground'>No projects yet.</p>
+			)}
+		</div>
+	</div>
+</PageLayout>

@@ -33,4 +33,20 @@ const post = defineCollection({
 		})
 })
 
-export const collections = { post }
+const project = defineCollection({
+	type: 'content',
+	schema: z.object({
+		title: z.string().max(60),
+		description: z.string().min(50).max(200),
+		publishDate: z
+			.string()
+			.or(z.date())
+			.transform((val) => new Date(val)),
+		techStack: z.array(z.string()),
+		githubUrl: z.string().url().optional(),
+		blogUrl: z.string().url().optional(),
+		featured: z.boolean().default(false)
+	})
+})
+
+export const collections = { post, project }

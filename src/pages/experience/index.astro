@@ -1,0 +1,183 @@
+---
+import PageLayout from '@/layouts/BaseLayout.astro'
+import Button from '@/components/Button.astro'
+
+const experience = [
+	{
+		company: 'Futures First',
+		role: 'Quantitative Engineer',
+		period: 'Sep 2023 - Present',
+		highlights: [
+			'Built a real-time P&L dashboard serving 15+ traders using React, WebSocket streams, and a Python asyncio backend',
+			'Designed automated data pipelines processing 10M+ market events daily, reducing reporting latency from hours to minutes',
+			'Developed order-book visualization tools that improved pattern recognition for HFT strategies',
+			'Collaborated with traders to iterate on risk metrics and position tracking interfaces',
+			'Maintained and optimised Python-based data aggregation services across multiple exchange feeds'
+		]
+	},
+	{
+		company: 'Futures First',
+		role: 'Quant & Algo Intern',
+		period: 'Apr 2023 - Sep 2023',
+		highlights: [
+			'Built a backtesting framework in Python for evaluating intraday trading strategies on historical order-book data',
+			'Created automated reconciliation reports that cut end-of-day settlement review time by 60%',
+			'Wrote data-cleaning and normalization pipelines for exchange feed data across multiple asset classes',
+			'Contributed to production monitoring dashboards used by the trading desk'
+		]
+	}
+]
+
+const skills = [
+	{
+		category: 'Languages',
+		items: [
+			{ name: 'Python', level: 5 },
+			{ name: 'C++', level: 3 },
+			{ name: 'Go', level: 3 },
+			{ name: 'TypeScript', level: 4 }
+		]
+	},
+	{
+		category: 'Frontend',
+		items: [
+			{ name: 'React.js', level: 4 },
+			{ name: 'HTML/CSS', level: 4 },
+			{ name: 'Data Visualization', level: 4 }
+		]
+	},
+	{
+		category: 'Infrastructure',
+		items: [
+			{ name: 'SQL', level: 4 },
+			{ name: 'Git', level: 5 },
+			{ name: 'Linux', level: 4 },
+			{ name: 'Docker', level: 3 },
+			{ name: 'Bash', level: 4 }
+		]
+	},
+	{
+		category: 'Domains',
+		items: [
+			{ name: 'Algorithmic Trading', level: 4 },
+			{ name: 'HFT', level: 4 },
+			{ name: 'Quantitative Analysis', level: 4 },
+			{ name: 'Data Engineering', level: 4 }
+		]
+	}
+]
+---
+
+<PageLayout meta={{ title: 'Experience' }}>
+	<div class='w-full'>
+		<Button title='Back' href='/' style='button'>
+			<svg
+				xmlns='http://www.w3.org/2000/svg'
+				width='14'
+				height='14'
+				viewBox='0 0 24 24'
+				slot='icon-before'
+			>
+				<path
+					fill='currentColor'
+					d='m6.921 12.5l5.792 5.792L12 19l-7-7l7-7l.713.708L6.921 11.5H19v1z'
+				>
+				</path>
+			</svg>
+		</Button>
+
+		<div class='mt-5 flex w-full flex-col gap-y-10'>
+			<div>
+				<h1 class='mb-1 text-2xl font-bold' style='text-wrap: balance'>Experience</h1>
+				<p class='text-muted-foreground'>A detailed look at my professional background, skills, and education</p>
+			</div>
+
+			<div class='flex flex-col gap-y-10 lg:flex-row lg:gap-x-10'>
+				{/* Timeline Column */}
+				<div class='flex-1'>
+					<h2 class='mb-6 text-lg font-semibold' style='text-wrap: balance'>Work History</h2>
+					<div class='flex flex-col gap-y-8'>
+						{experience.map((exp) => (
+							<div class='relative pl-8'>
+								{/* Vertical line */}
+								<div class='absolute left-[10px] top-0 bottom-0 w-px bg-border/80' />
+								{/* Dot */}
+								<div class='absolute left-[4px] top-1.5 z-10 h-3 w-3 rounded-full bg-primary ring-4 ring-background shadow-sm' />
+
+								<div class='rounded-2xl border border-border/60 bg-background/40 p-5 transition-all duration-300 hover:border-border hover:shadow-sm'>
+									<div class='flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-4'>
+										<div class='min-w-0'>
+											<p class='mb-1 text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground'>
+												{exp.company}
+											</p>
+											<h3 class='text-base font-semibold leading-tight text-foreground sm:text-lg' style='text-wrap: balance'>
+												{exp.role}
+											</h3>
+										</div>
+										<span class='inline-flex shrink-0 items-center rounded-full border border-border/70 bg-muted/40 px-3 py-1 text-xs font-medium text-muted-foreground'>
+											{exp.period}
+										</span>
+									</div>
+									<ul class='mt-4 flex flex-col gap-y-2'>
+										{exp.highlights.map((highlight) => (
+											<li class='flex items-start gap-x-2 text-sm leading-6 text-muted-foreground'>
+												<span class='mt-2 block h-1 w-1 shrink-0 rounded-full bg-muted-foreground/50' />
+												<span style='text-wrap: pretty'>{highlight}</span>
+											</li>
+										))}
+									</ul>
+								</div>
+							</div>
+						))}
+					</div>
+				</div>
+
+				{/* Skills Column */}
+				<div class='w-full lg:w-80 xl:w-96'>
+					<h2 class='mb-6 text-lg font-semibold' style='text-wrap: balance'>Skills & Proficiency</h2>
+					<div class='flex flex-col gap-y-6'>
+						{skills.map((group) => (
+							<div class='rounded-2xl border border-border bg-primary-foreground px-5 py-4'>
+								<h3 class='mb-3 text-sm font-medium uppercase tracking-[0.1em] text-muted-foreground'>
+									{group.category}
+								</h3>
+								<div class='flex flex-col gap-y-3'>
+									{group.items.map((skill) => (
+										<div class='flex flex-col gap-y-1'>
+											<div class='flex items-center justify-between'>
+												<span class='text-sm font-medium text-foreground'>{skill.name}</span>
+												<span class='text-xs text-muted-foreground'>{skill.level}/5</span>
+											</div>
+											<div class='h-1.5 w-full overflow-hidden rounded-full bg-muted'>
+												<div
+													class='h-full rounded-full bg-foreground/30 transition-all'
+													style={`width: ${(skill.level / 5) * 100}%`}
+												/>
+											</div>
+										</div>
+									))}
+								</div>
+							</div>
+						))}
+					</div>
+				</div>
+			</div>
+
+			{/* Education */}
+			<div>
+				<h2 class='mb-4 text-lg font-semibold' style='text-wrap: balance'>Education</h2>
+				<div class='rounded-2xl border border-border bg-primary-foreground px-5 py-4'>
+					<div class='flex flex-col gap-y-1 sm:flex-row sm:items-center sm:justify-between'>
+						<div>
+							<h3 class='text-base font-medium text-foreground' style='text-wrap: balance'>Bachelor of Technology in Computer Science</h3>
+							<p class='text-sm text-muted-foreground'>Manipal University Jaipur</p>
+						</div>
+						<span class='inline-flex shrink-0 items-center rounded-full border border-border/70 bg-muted/40 px-3 py-1 text-xs font-medium text-muted-foreground sm:ml-4'>
+							2019 - 2023
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</PageLayout>
