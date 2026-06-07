@@ -12,28 +12,28 @@ const pathname = Astro.url.pathname
 		<div class='flex flex-row items-center justify-center gap-x-4 sm:gap-x-6'>
 			<a
 				href='/projects'
-				class={'flex-none py-2 text-[1.05rem] font-medium transition-all hover:text-foreground/75 ' + (pathname.startsWith('/projects') ? 'text-foreground underline underline-offset-4' : 'text-muted-foreground')}
+				class={'nav-link flex-none py-2 text-[1.05rem] font-medium transition-all hover:text-foreground/75 ' + (pathname.startsWith('/projects') ? 'text-foreground active' : 'text-muted-foreground')}
 				aria-label='Nav Menu Item'
 				aria-current={pathname.startsWith('/projects') ? 'page' : undefined}
 				>Projects
 			</a>
 			<a
 				href='/experience'
-				class={'flex-none py-2 text-[1.05rem] font-medium transition-all hover:text-foreground/75 ' + (pathname.startsWith('/experience') ? 'text-foreground underline underline-offset-4' : 'text-muted-foreground')}
+				class={'nav-link flex-none py-2 text-[1.05rem] font-medium transition-all hover:text-foreground/75 ' + (pathname.startsWith('/experience') ? 'text-foreground active' : 'text-muted-foreground')}
 				aria-label='Nav Menu Item'
 				aria-current={pathname.startsWith('/experience') ? 'page' : undefined}
 				>Experience
 			</a>
 			<a
 				href='/blog'
-				class={'flex-none py-2 text-[1.05rem] font-medium transition-all hover:text-foreground/75 ' + (pathname.startsWith('/blog') ? 'text-foreground underline underline-offset-4' : 'text-muted-foreground')}
+				class={'nav-link flex-none py-2 text-[1.05rem] font-medium transition-all hover:text-foreground/75 ' + (pathname.startsWith('/blog') ? 'text-foreground active' : 'text-muted-foreground')}
 				aria-label='Nav Menu Item'
 				aria-current={pathname.startsWith('/blog') ? 'page' : undefined}
 				>Blog
 			</a>
 			<a
 				href='/tools'
-				class={'flex-none py-2 text-[1.05rem] font-medium transition-all hover:text-foreground/75 ' + (pathname.startsWith('/tools') ? 'text-foreground underline underline-offset-4' : 'text-muted-foreground')}
+				class={'nav-link flex-none py-2 text-[1.05rem] font-medium transition-all hover:text-foreground/75 ' + (pathname.startsWith('/tools') ? 'text-foreground active' : 'text-muted-foreground')}
 				aria-label='Nav Menu Item'
 				aria-current={pathname.startsWith('/tools') ? 'page' : undefined}
 				>Tools
@@ -41,7 +41,7 @@ const pathname = Astro.url.pathname
 
 			<button
 				id='toggleDarkMode'
-				class='relative rounded-md border border-border p-1.5 transition-all hover:bg-border'
+				class='relative rounded-md border border-border p-1.5 transition-all duration-200 hover:bg-border'
 			>
 				<span class='sr-only'>Toggle dark mode</span>
 				<svg
