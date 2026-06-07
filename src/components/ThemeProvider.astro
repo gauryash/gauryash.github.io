@@ -26,8 +26,14 @@
 		root.classList.toggle('dark')
 	}
 
-	// Initial Setup
+	// Initial Setup — suppress transitions during theme application to prevent FOUC
+	document.documentElement.classList.add('preload')
 	setTheme(getUserPref())
+	requestAnimationFrame(() => {
+		requestAnimationFrame(() => {
+			document.documentElement.classList.remove('preload')
+		})
+	})
 
 	// View Transitions hook to restore theme
 	document.addEventListener('astro:after-swap', () => setTheme(getUserPref()))

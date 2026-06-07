@@ -4,15 +4,17 @@
 
 @font-face {
 	font-family: 'Satoshi';
-	src: url('/fonts/Satoshi-Variable.ttf');
+	src: url('/fonts/Satoshi-Variable.woff2') format('woff2');
 	font-style: normal;
+	font-weight: 100 900;
 	font-display: swap;
 }
 
 @font-face {
 	font-family: 'Satoshi';
-	src: url('/fonts/Satoshi-VariableItalic.ttf');
+	src: url('/fonts/Satoshi-VariableItalic.woff2') format('woff2');
 	font-style: italic;
+	font-weight: 100 900;
 	font-display: swap;
 }
 
@@ -72,9 +74,14 @@
 	*:focus-visible {
 		@apply outline-none ring-2 ring-ring;
 	}
+	html.preload *,
+	html.preload *::before,
+	html.preload *::after {
+		transition: none !important;
+	}
 	body {
 		@apply bg-background text-foreground;
-		transition: background-color 300ms ease, color 300ms ease;
+		transition: background-color 300ms var(--ease-out-quart), color 300ms var(--ease-out-quart);
 	}
 }
 
