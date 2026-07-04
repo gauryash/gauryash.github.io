@@ -26,15 +26,6 @@ const pathname = Astro.url.pathname
 				aria-current={pathname.startsWith('/blog') ? 'page' : undefined}
 				>Blog
 			</a>
-			<a
-				href='/tools'
-				class={'nav-link flex-none py-2 text-[1.05rem] font-medium transition-all hover:text-foreground/75 ' +
-					(pathname.startsWith('/tools') ? 'text-foreground active' : 'text-muted-foreground')}
-				aria-label='Nav Menu Item'
-				aria-current={pathname.startsWith('/tools') ? 'page' : undefined}
-				>Tools
-			</a>
-
 			<button
 				id='toggleDarkMode'
 				class='relative rounded-md border border-border p-1.5 transition-all duration-200 hover:bg-border'
