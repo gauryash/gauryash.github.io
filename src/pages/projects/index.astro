@@ -1,6 +1,7 @@
 ---
 import PageLayout from '@/layouts/BaseLayout.astro'
 import Button from '@/components/Button.astro'
+import ContributionGraph from '@/components/ContributionGraph.astro'
 
 const GITHUB_USER = 'gauryash'
 
@@ -83,6 +84,10 @@ const languageColors: Record<string, string> = {
 				<p class='text-muted-foreground'>
 					All my public work on GitHub — trading tools, LLM experiments, infrastructure, and more
 				</p>
+			</div>
+
+			<div class='rounded-2xl border border-border bg-primary-foreground px-5 py-5'>
+				<ContributionGraph />
 			</div>
 
 			{

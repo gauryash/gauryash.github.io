@@ -1,0 +1,212 @@
+---
+const { username = 'gauryash' } = Astro.props
+---
+
+<div class='contribution-graph w-full' data-username={username}>
+	<div class='flex items-center gap-x-3 mb-4'>
+		<h2 class='text-lg font-semibold' style='text-wrap: balance'>Contributions</h2>
+		<select id='year-select' class='rounded-lg border border-border bg-primary-foreground px-2.5 py-1 text-xs font-medium text-muted-foreground focus:outline-none focus:ring-1 focus:ring-border'>
+			<option value='2026'>2026</option>
+			<option value='2025'>2025</option>
+			<option value='2024'>2024</option>
+		</select>
+	</div>
+
+	<div id='graph-container' class='overflow-x-auto pb-2'>
+		<!-- Skeleton loading state -->
+		<div class='flex flex-col gap-[3px]'>
+			<div class='flex gap-[3px] mb-1 ml-10'>
+				{[...Array(12)].map(() => (
+					<div class='h-3 w-[calc((100%-10px)/12)] max-w-[38px] rounded bg-muted/50 animate-pulse' />
+				))}
+			</div>
+			<div class='flex'>
+				<div class='flex flex-col gap-[3px] mr-[3px]'>
+					{[0, 2, 4].map(() => (
+						<div class='h-[10px] w-[10px] text-[8px] leading-[10px] text-muted-foreground' />
+					))}
+				</div>
+				{[...Array(52)].map(() => (
+					<div class='flex flex-col gap-[3px]'>
+						{[...Array(7)].map(() => (
+							<div class='h-[10px] w-[10px] rounded-[2px] bg-muted/30 animate-pulse' />
+						))}
+					</div>
+				))}
+			</div>
+		</div>
+	</div>
+
+	<div class='mt-3 flex items-center justify-between text-xs text-muted-foreground'>
+		<span id='total-label'>Loading contributions...</span>
+		<div class='flex items-center gap-x-1'>
+			<span>Less</span>
+			<div class='flex gap-[2px]'>
+				<div class='h-[10px] w-[10px] rounded-[2px] bg-[#ebedf0] dark:bg-[#2d333b]' />
+				<div class='h-[10px] w-[10px] rounded-[2px] bg-[#9be9a8] dark:bg-[#0e4429]' />
+				<div class='h-[10px] w-[10px] rounded-[2px] bg-[#40c463] dark:bg-[#006d32]' />
+				<div class='h-[10px] w-[10px] rounded-[2px] bg-[#30a14e] dark:bg-[#26a641]' />
+				<div class='h-[10px] w-[10px] rounded-[2px] bg-[#216e39] dark:bg-[#39d353]' />
+			</div>
+			<span>More</span>
+		</div>
+	</div>
+</div>
+
+<script is:inline>
+	(function(){
+		'use strict';
+		
+		const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+		const DAYS = ['','Mon','','Wed','','Fri',''];
+
+		function getLevelColor(level, isDark) {
+			const colors = isDark
+				? ['#2d333b','#0e4429','#006d32','#26a641','#39d353']
+				: ['#ebedf0','#9be9a8','#40c463','#30a14e','#216e39'];
+			return colors[level] ?? colors[0];
+		}
+
+		function isDarkMode() {
+			return document.documentElement.getAttribute('data-theme') === 'dark' ||
+				document.documentElement.classList.contains('dark');
+		}
+
+		async function loadYear(year) {
+			var container = document.getElementById('graph-container');
+			var totalLabel = document.getElementById('total-label');
+			var username = (document.querySelector('.contribution-graph') || {}).dataset?.username || 'gauryash';
+
+			if (!container || !totalLabel) return;
+
+			totalLabel.textContent = 'Loading...';
+			container.innerHTML = '<p class="text-sm text-muted-foreground">Loading contribution data...</p>';
+
+			try {
+				var res = await fetch('https://github-contributions-api.jogruber.de/v4/' + username + '?y=' + year);
+				if (!res.ok) throw new Error('API error');
+				var data = await res.json();
+				renderGraph(data.contributions, data.total?.[String(year)] ?? 0, year, container, totalLabel);
+			} catch(e) {
+				try {
+					var res2 = await fetch('https://github-contributions-api.jogruber.de/v4/' + username);
+					if (!res2.ok) throw new Error('API error');
+					var data2 = await res2.json();
+					var yearData = data2.contributions.filter(function(c) { return c.date.startsWith(String(year)); });
+					var yearTotal = data2.total?.[String(year)] ?? 0;
+					renderGraph(yearData, yearTotal, year, container, totalLabel);
+				} catch(e2) {
+					container.innerHTML = '<p class="text-sm text-muted-foreground">Unable to load contribution data.</p>';
+					totalLabel.textContent = 'Failed to load';
+				}
+			}
+		}
+
+		function renderGraph(contributions, total, year, container, totalLabel) {
+			var isDark = isDarkMode();
+			var dateMap = new Map();
+			for (var i = 0; i < contributions.length; i++) {
+				dateMap.set(contributions[i].date, contributions[i].level);
+			}
+
+			var startDate = new Date(year, 0, 1);
+			var endDate = new Date(year, 11, 31);
+			var startDay = startDate.getDay();
+			var totalDays = Math.ceil((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24)) + 1;
+			var weeks = Math.ceil((totalDays + startDay) / 7);
+
+			var monthLabels = [];
+			for (var m = 0; m < 12; m++) {
+				var firstOfMonth = new Date(year, m, 1);
+				var dayOfYear = Math.floor((firstOfMonth.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
+				var weekIndex = Math.floor((dayOfYear + startDay) / 7);
+				if (weekIndex < weeks) {
+					monthLabels.push({ month: m, week: weekIndex });
+				}
+			}
+
+			var seenMonths = new Set();
+			var uniqueMonthLabels = monthLabels.filter(function(m) {
+				if (seenMonths.has(m.month)) return false;
+				seenMonths.add(m.month);
+				return true;
+			});
+
+			var html = '<div class="flex flex-col gap-[3px]">';
+
+			html += '<div class="flex mb-1" style="margin-left: 28px;">';
+			for (var w = 0; w < weeks; w++) {
+				var label = null;
+				for (var mi = 0; mi < uniqueMonthLabels.length; mi++) {
+					if (uniqueMonthLabels[mi].week === w) {
+						label = uniqueMonthLabels[mi];
+						break;
+					}
+				}
+				html += '<div class="text-[10px] leading-[10px] text-muted-foreground" style="width:10px;height:10px;margin-right:3px;">' + (label ? MONTHS[label.month] : '') + '</div>';
+			}
+			html += '</div>';
+
+			for (var day = 0; day < 7; day++) {
+				html += '<div class="flex">';
+				var dayLabel = DAYS[day] || '';
+				html += '<div class="text-[8px] leading-[10px] text-muted-foreground text-right pr-[3px]" style="width:25px;height:10px;">' + dayLabel + '</div>';
+
+				for (var week = 0; week < weeks; week++) {
+					var dayIndex = week * 7 + day - startDay;
+					var currentDate = new Date(startDate);
+					currentDate.setDate(startDate.getDate() + dayIndex);
+
+					var dateStr = currentDate.toISOString().split('T')[0];
+					var level = dateMap.get(dateStr) || 0;
+					var count = 0;
+					for (var ci = 0; ci < contributions.length; ci++) {
+						if (contributions[ci].date === dateStr) {
+							count = contributions[ci].count;
+							break;
+						}
+					}
+					var color = getLevelColor(level, isDark);
+					var isCurrentYear = currentDate.getFullYear() === year;
+
+					html += '<div class="rounded-[2px]" title="' + count + ' contribution' + (count !== 1 ? 's' : '') + ' on ' + dateStr + '" style="width:10px;height:10px;margin-right:3px;margin-bottom:3px;background-color:' + (isCurrentYear ? color : 'transparent') + ';"></div>';
+				}
+				html += '</div>';
+			}
+
+			html += '</div>';
+			container.innerHTML = html;
+			totalLabel.textContent = total.toLocaleString() + ' contributions in the last year';
+		}
+
+		var yearSelect = document.getElementById('year-select');
+		if (yearSelect) {
+			loadYear(parseInt(yearSelect.value));
+			yearSelect.addEventListener('change', function() {
+				loadYear(parseInt(yearSelect.value));
+			});
+		}
+
+		var observer = new MutationObserver(function() {
+			var ys = document.getElementById('year-select');
+			if (ys) loadYear(parseInt(ys.value));
+		});
+		observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme', 'class'] });
+	})();
+</script>
+
+<style>
+	.contribution-graph {
+		--cell-size: 10px;
+		--cell-gap: 3px;
+	}
+	.contribution-graph select {
+		-webkit-appearance: none;
+		appearance: none;
+		background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+		background-repeat: no-repeat;
+		background-position: right 6px center;
+		background-size: 12px;
+		padding-right: 24px;
+	}
+</style>
