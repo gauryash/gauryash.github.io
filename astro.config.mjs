@@ -1,4 +1,5 @@
 import { defineConfig } from 'astro/config'
+import { unified } from '@astrojs/markdown-remark'
 import mdx from '@astrojs/mdx'
 import tailwind from '@astrojs/tailwind'
 import { remarkReadingTime } from './src/utils/remarkReadingTime.ts'
@@ -20,21 +21,23 @@ export default defineConfig({
 		icon()
 	],
 	markdown: {
-		remarkPlugins: [remarkUnwrapImages, remarkReadingTime],
-		rehypePlugins: [
-			[
-				rehypeExternalLinks,
-				{
-					target: '_blank',
-					rel: ['nofollow, noopener, noreferrer']
+		processor: unified({
+			remarkPlugins: [remarkUnwrapImages, remarkReadingTime],
+			rehypePlugins: [
+				[
+					rehypeExternalLinks,
+					{
+						target: '_blank',
+						rel: ['nofollow, noopener, noreferrer']
+					}
+				]
+			],
+			remarkRehype: {
+				footnoteLabelProperties: {
+					className: ['']
 				}
-			]
-		],
-		remarkRehype: {
-			footnoteLabelProperties: {
-				className: ['']
 			}
-		}
+		})
 	},
 	prefetch: true,
 	output: 'static'
