@@ -1,9 +1,9 @@
 ---
-title: "Custom Open Graph Images"
-publishDate: "27 January 2024"
-description: "How I set up custom social preview cards for this blog, and why the design choices behind them matter more than the automation."
-tags: ["blog", "design", "meta"]
-ogImage: "/social-card.png"
+title: 'Custom Open Graph Images'
+publishDate: '27 January 2024'
+description: 'How I set up custom social preview cards for this blog, and why the design choices behind them matter more than the automation.'
+tags: ['blog', 'design', 'meta']
+ogImage: '/social-card.png'
 ---
 
 A blog post without a social preview card is a blank box in a feed. When someone shares a link, the open graph image is the first thing they see — often before they read a single word of the content.
@@ -37,7 +37,7 @@ For a personal site where the design system is intentionally restrained, the soc
 In the frontmatter of any post, add:
 
 ```yaml
-ogImage: "/path/to/your-image.png"
+ogImage: '/path/to/your-image.png'
 ```
 
 The image lives anywhere in `public/`. Keep it at 1200×630 (the standard OG aspect ratio). Export it as PNG with sRGB color space — social platforms vary in how they handle color profiles, and sRGB is the safest common denominator.

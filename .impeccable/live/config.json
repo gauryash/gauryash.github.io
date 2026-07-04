@@ -1,8 +1,0 @@
-{
-  "version": 1,
-  "framework": "astro",
-  "files": ["dist/**/*.html"],
-  "insertBefore": "</body>",
-  "commentSyntax": "html",
-  "cspChecked": true
-}

@@ -7,7 +7,8 @@ export const siteConfig: SiteConfig = {
 	// Meta property used to construct the meta title property, found in src/components/BaseHead.astro L:11
 	title: 'Yash Gaur - Resume',
 	// Meta property used as the default description meta property
-	description: 'Quantitative Engineer at Futures First specializing in Python and React.js',
+	description:
+		'Quantitative Engineer at Futures First. Quant finance, HFT infrastructure, DevOps, and exploring the LLM/AI frontier.',
 	// HTML lang property, found in src/layouts/Base.astro L:18
 	lang: 'en-GB',
 	// Meta property, found in src/components/BaseHead.astro L:42
@@ -27,6 +28,10 @@ export const menuLinks: Array<{ title: string; path: string }> = [
 	{
 		title: 'Home',
 		path: '/'
+	},
+	{
+		title: 'Projects',
+		path: '/projects/'
 	},
 	{
 		title: 'Blog',

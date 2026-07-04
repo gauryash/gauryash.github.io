@@ -1,8 +1,8 @@
 ---
-title: "Building a Real-Time Order Book Visualizer"
-publishDate: "14 March 2024"
-description: "How I built a real-time order book dashboard that streams market data over WebSocket and renders depth charts at 60fps using React and Python."
-tags: ["python", "react", "hft", "data-visualization"]
+title: 'Building a Real-Time Order Book Visualizer'
+publishDate: '14 March 2024'
+description: 'How I built a real-time order book dashboard that streams market data over WebSocket and renders depth charts at 60fps using React and Python.'
+tags: ['python', 'react', 'hft', 'data-visualization']
 ---
 
 Market data moves fast. At an HFT desk, the order book is the single source of truth for where liquidity sits, where it's moving, and where it might go next. Watching it update row by row in a terminal is functional, but you miss the shape.
