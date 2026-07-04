@@ -16,4 +16,4 @@ Project Glasswing brings together industry leaders such as AWS, Apple, Cisco, Go
 As AI becomes more powerful, initiatives like Project Glasswing highlight an important shift: using AI not just to build software faster, but to make it significantly more secure.
 
 **Want to learn more?**
-Check out Anthropic's official announcement here: [Project Glasswing](https://www.anthropic.com/glasswing?utm_source=chatgpt.com)
+Check out Anthropic's official announcement here: [Project Glasswing](https://www.anthropic.com/glasswing)
