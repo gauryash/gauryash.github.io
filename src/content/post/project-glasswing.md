@@ -1,6 +1,6 @@
 ---
 title: 'Project Glasswing: AI Next Big Step in Cybersecurity'
-publishDate: '04 July 2026'
+publishDate: '03 July 2026'
 description: 'Anthropic Project Glasswing uses AI to proactively find critical software vulnerabilities before attackers can exploit them.'
 tags: ['ai', 'cybersecurity', 'anthropic', 'llm']
 ---

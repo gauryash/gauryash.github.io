@@ -1,6 +1,6 @@
 ---
 title: 'Reduce Hallucinations: A Practical Guide for LLMs'
-publishDate: '04 July 2026'
+publishDate: '26 June 2026'
 description: 'Proven techniques to minimize false information in LLM outputs — from basic prompt strategies to advanced verification methods.'
 tags: ['ai', 'llm', 'prompt-engineering', 'best-practices']
 ---
