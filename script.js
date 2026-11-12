@@ -20,6 +20,9 @@ preferredDark.addEventListener('change', updateThemeButton);
 const sections = [...document.querySelectorAll('main > .view')];
 const tabs = [...document.querySelectorAll('.tab')];
 function renderSection() {
+  if (location.hash.startsWith('#/')) {
+    history.replaceState({}, '', location.hash.slice(1));
+  }
   const name = location.pathname.split('/').filter(Boolean)[0] || 'home';
   const section = sections.find(item => item.id === name) || sections[0];
   for (const item of sections) item.hidden = item !== section;
