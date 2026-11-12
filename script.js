@@ -20,22 +20,29 @@ preferredDark.addEventListener('change', updateThemeButton);
 const sections = [...document.querySelectorAll('main > .view')];
 const tabs = [...document.querySelectorAll('.tab')];
 function renderSection() {
-  const name = location.hash.replace('#/', '');
+  const name = location.pathname.split('/').filter(Boolean)[0] || 'home';
   const section = sections.find(item => item.id === name) || sections[0];
   for (const item of sections) item.hidden = item !== section;
   for (const tab of tabs) {
-    if (tab.hash === `#/${section.id}`) tab.setAttribute('aria-current', 'page');
+    if (tab.pathname.replace(/^\//, '') === section.id) tab.setAttribute('aria-current', 'page');
     else tab.removeAttribute('aria-current');
   }
   window.scrollTo(0, 0);
 }
-window.addEventListener('hashchange', renderSection);
+document.addEventListener('click', event => {
+  const link = event.target.closest('a[href^="/"]');
+  if (!link || link.origin !== location.origin) return;
+  event.preventDefault();
+  history.pushState({}, '', link.pathname);
+  renderSection();
+});
+window.addEventListener('popstate', renderSection);
 window.addEventListener('keydown', event => {
   if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey ||
       /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement?.tagName || '') ||
       document.activeElement?.isContentEditable) return;
-  const target = { '1': '#/home', '2': '#/craft', '3': '#/work' }[event.key];
-  if (target) location.hash = target;
+  const target = { '1': '/home', '2': '/craft', '3': '/work' }[event.key];
+  if (target) { history.pushState({}, '', target); renderSection(); }
 });
 
 updateThemeButton();

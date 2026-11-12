@@ -2,7 +2,7 @@
 
 A buildless portfolio. The site is just
 `index.html`, `styles.css`, `script.js`, and `favicon.svg`; it has no dependencies or build step.
-Navigation uses section links or keys 1–3. The theme follows your device's
+Navigation uses `/home`, `/craft`, and `/work` or keys 1–3. The theme follows your device's
 appearance until you use the light/dark button; your choice is saved locally.
 
 Edit the text and links in `index.html`, the design in `styles.css`,
