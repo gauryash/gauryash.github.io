@@ -11,3 +11,5 @@ Edit these files:
 Open `index.html` to view the site.
 
 Push to `main` to publish it on GitHub Pages.
+
+Design elements inspired by [Freaktion ↗](https://www.freaktion.xyz/).
