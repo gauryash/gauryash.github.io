@@ -64,6 +64,7 @@ main { flex: 1; }
 .theme-toggle:hover { color: var(--ink); }
 .theme-toggle:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; border-radius: 4px; }
 .view { margin-bottom: 80px; animation: enter .24s ease-out both; }
+.view:focus { outline: none; }
 @keyframes enter { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: translateY(0); } }
 .home { padding-top: 103px; max-width: 635px; line-height: 1.58; font-size: 15px; letter-spacing: .005em; }
 .home h1 { margin: 0 0 24px; font-size: inherit; font-weight: 550; }
