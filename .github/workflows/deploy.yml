@@ -39,9 +39,10 @@ jobs:
 
           posts = json.loads((site / 'posts' / 'index.json').read_text())
           for post in posts:
-              target = site / 'work' / post['slug'] / 'index.html'
-              target.parent.mkdir(parents=True, exist_ok=True)
-              shutil.copyfile(site / 'index.html', target)
+              for route in ('wiki', 'work'):
+                  target = site / route / post['slug'] / 'index.html'
+                  target.parent.mkdir(parents=True, exist_ok=True)
+                  shutil.copyfile(site / 'index.html', target)
           PY
       - name: Upload static site
         uses: actions/upload-pages-artifact@v4

@@ -13,8 +13,8 @@ Published routes:
 - `/` and `/home` — introduction
 - `/craft` — projects and skills
 - `/work` — experience and notes
-- `/work/<post-slug>` — an individual note
 - `/wiki` — notes index
+- `/wiki/<post-slug>` — an individual note
 - `/reading` — reading list
 
 Open `index.html` to view the site.

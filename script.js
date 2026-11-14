@@ -213,7 +213,7 @@ function sectionFor(parts) {
 }
 
 function updateNavigation(section) {
-  const active = ['wiki', 'reading'].includes(section) ? 'work' : section;
+  const active = section;
   for (const tab of tabs) {
     const tabSection = new URL(tab.href, location.origin).pathname.replace(/^\//, '').replace(/\/$/, '') || 'home';
     if (tabSection === active) tab.setAttribute('aria-current', 'page');
@@ -269,7 +269,7 @@ async function readPost(entry) {
 function postRow(post) {
   const label = post.type || 'Post';
   const meta = post.read || formatDate(post.date);
-  return `<a class="work-row notes-post-row" href="${routeHref(`/work/${encodeURIComponent(post.slug)}`)}" aria-label="Open ${escapeHtml(post.title)}">
+  return `<a class="work-row notes-post-row" href="${routeHref(`/wiki/${encodeURIComponent(post.slug)}`)}" aria-label="Open ${escapeHtml(post.title)}">
     <span class="row-left"><span class="row-title">${escapeHtml(post.title)}</span><span class="row-meta">${escapeHtml(meta)}</span></span>
     <span class="row-type">${escapeHtml(label)}</span>
   </a>`;
@@ -302,7 +302,7 @@ function detailView(post, rendered) {
     : '<span class="notes-toc-empty"></span>';
 
   return `<section class="notes-detail view">
-    <div class="notes-detail-back"><a class="back-link" href="${routeHref('/work')}"><span class="keycap">&larr;</span>Back to Work</a></div>
+    <div class="notes-detail-back"><a class="back-link" href="${routeHref('/wiki')}"><span class="keycap">&larr;</span>Back to Wiki</a></div>
     <div class="notes-detail-grid">
       <nav class="notes-toc" aria-label="On this page">${toc}</nav>
       <article class="notes-article">
