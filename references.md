@@ -1,5 +1,3 @@
-The [post reader](/wiki/) shows Markdown posts in the same case-study layout as the portfolio prototype.
-
 ## AI / Machine Learning
 
 - **Neural Networks: Zero to Hero (Andrej Karpathy)** - https://karpathy.ai/zero-to-hero.html

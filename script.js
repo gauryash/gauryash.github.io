@@ -369,7 +369,7 @@ async function readingView(token) {
   const parsed = parseDocument(await response.text());
   const rendered = renderMarkdown(parsed.body);
   readingContent.innerHTML = `<section class="notes-reading view">
-    <div class="notes-reading-head"><p class="section-kicker">Reading list</p><h2>${escapeHtml(parsed.data.title || 'Reading list')}</h2><p>References collected alongside the work notes.</p></div>
+    <div class="notes-reading-head"><h2>${escapeHtml(parsed.data.title || 'Reading list')}</h2></div>
     <article class="notes-article notes-reading-article"><div class="notes-body">${rendered.html}</div></article>
   </section>`;
   document.title = 'Reading list | Yash Gaur';
