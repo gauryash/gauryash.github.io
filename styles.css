@@ -132,8 +132,8 @@ dd { margin: 0; }
 .notes-body h1:first-child, .notes-body h2:first-child, .notes-body h3:first-child { margin-top: 0; }
 .notes-body p { margin: 0 0 18px; color: var(--sub); }
 .notes-body strong, .notes-body em { color: var(--ink); }
-.notes-body a, .notes-reading a { color: var(--blue); text-decoration: underline; text-decoration-color: var(--blue); text-underline-offset: 3px; }
-.notes-body a:hover, .notes-reading a:hover { text-decoration-color: var(--ink); }
+.notes-body a { color: var(--blue); text-decoration: underline; text-decoration-color: var(--blue); text-underline-offset: 3px; }
+.notes-body a:hover { text-decoration-color: var(--ink); }
 .notes-body blockquote { margin: 24px 0; padding: 3px 0 3px 18px; border-left: 2px solid var(--app-border); color: var(--ink); }
 .notes-body ul, .notes-body ol { margin: 0 0 22px; padding-left: 22px; color: var(--sub); }
 .notes-body li { padding-left: 5px; margin: 6px 0; }
@@ -152,7 +152,6 @@ dd { margin: 0; }
 .notes-reading { max-width: 900px; margin-top: 70px; }
 .notes-reading-head { max-width: 620px; margin-bottom: 42px; }
 .notes-reading-head h2 { margin: 0 0 13px; font-size: 28px; font-weight: 550; letter-spacing: -.04em; }
-.notes-reading-head p { margin: 0; color: var(--sub); line-height: 1.8; }
 .notes-reading-article { max-width: 760px; padding-bottom: 80px; }
 .notes-reading-article .notes-body h2 { padding-top: 12px; margin-top: 36px; border-top: 1px solid var(--line); }
 .notes-reading-article .notes-body ul { margin-bottom: 30px; }

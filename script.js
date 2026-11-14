@@ -192,19 +192,9 @@ function renderMarkdown(source) {
 }
 
 function route() {
-  const queryRoute = new URLSearchParams(location.search).get('route');
-  if (queryRoute) {
-    const cleanPath = queryRoute.startsWith('/') ? queryRoute : `/${queryRoute}`;
-    history.replaceState({}, '', cleanPath);
-  }
-  if (location.hash.startsWith('#/')) history.replaceState({}, '', location.hash.slice(1));
   return location.pathname.replace(/\/$/, '').split('/').filter(Boolean).map(value => {
     try { return decodeURIComponent(value); } catch { return value; }
   });
-}
-
-function routeHref(path) {
-  return path;
 }
 
 function sectionFor(parts) {
@@ -229,7 +219,7 @@ function showSection(section) {
 
 function isAppRoute(pathname) {
   const path = pathname.replace(/\/+$/, '') || '/';
-  return path === '/' || /^\/(?:home|work|wiki|reading)(?:\/[^/]+)?$/.test(path);
+  return path === '/' || /^\/(?:home|work|reading|wiki(?:\/[^/]+)?)$/.test(path);
 }
 
 function formatDate(value) {
@@ -245,7 +235,7 @@ function loadingView(label = 'Loading...') {
 }
 
 function errorView(message) {
-  return `<section class="notes-error view"><h2>Could not load this view.</h2><p>${escapeHtml(message)}</p><a class="chip" href="${routeHref('/work')}">Back to Work</a></section>`;
+  return `<section class="notes-error view"><h2>Could not load this view.</h2><p>${escapeHtml(message)}</p><a class="chip" href="/work">Back to Work</a></section>`;
 }
 
 async function ensurePosts() {
@@ -268,7 +258,7 @@ async function readPost(entry) {
 function postRow(post) {
   const label = post.type || 'Post';
   const meta = post.read || formatDate(post.date);
-  return `<a class="work-row notes-post-row" href="${routeHref(`/wiki/${encodeURIComponent(post.slug)}`)}" aria-label="Open ${escapeHtml(post.title)}">
+  return `<a class="work-row notes-post-row" href="/wiki/${encodeURIComponent(post.slug)}" aria-label="Open ${escapeHtml(post.title)}">
     <span class="row-left"><span class="row-title">${escapeHtml(post.title)}</span><span class="row-meta">${escapeHtml(meta)}</span></span>
     <span class="row-type">${escapeHtml(label)}</span>
   </a>`;
@@ -299,7 +289,7 @@ function detailView(post, rendered) {
     : '<span class="notes-toc-empty"></span>';
 
   return `<section class="notes-detail view">
-    <div class="notes-detail-back"><a class="back-link" href="${routeHref('/wiki')}"><span class="keycap">&larr;</span>Back to Wiki</a></div>
+    <div class="notes-detail-back"><a class="back-link" href="/wiki"><span class="keycap">&larr;</span>Back to Wiki</a></div>
     <div class="notes-detail-grid">
       <nav class="notes-toc" aria-label="On this page">${toc}</nav>
       <article class="notes-article">
@@ -376,11 +366,6 @@ async function render() {
   const token = ++state.renderToken;
   const parts = route();
   const section = sectionFor(parts);
-  if (section === 'work' && parts[1]) {
-    history.replaceState({}, '', `/wiki/${encodeURIComponent(parts[1])}`);
-    render();
-    return;
-  }
   const selected = showSection(section);
 
   try {
@@ -416,7 +401,6 @@ document.addEventListener('click', event => {
 });
 
 window.addEventListener('popstate', render);
-window.addEventListener('hashchange', render);
 window.addEventListener('keydown', event => {
   if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey ||
       /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement?.tagName || '') ||
@@ -428,8 +412,8 @@ window.addEventListener('keydown', event => {
   }
   if (event.key === 'Escape') {
     const parts = route();
-    if ((parts[0] === 'work' || parts[0] === 'wiki') && parts[1]) {
-      history.pushState({}, '', `/${parts[0]}`);
+    if (parts[0] === 'wiki' && parts[1]) {
+      history.pushState({}, '', '/wiki');
       render();
     }
   }
