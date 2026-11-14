@@ -208,7 +208,7 @@ function routeHref(path) {
 }
 
 function sectionFor(parts) {
-  return ['home', 'craft', 'work', 'wiki', 'reading'].includes(parts[0]) ? parts[0] : 'home';
+  return ['home', 'work', 'wiki', 'reading'].includes(parts[0]) ? parts[0] : 'home';
 }
 
 function updateNavigation(section) {
@@ -229,7 +229,7 @@ function showSection(section) {
 
 function isAppRoute(pathname) {
   const path = pathname.replace(/\/+$/, '') || '/';
-  return path === '/' || /^\/(?:home|craft|work|wiki|reading)(?:\/[^/]+)?$/.test(path);
+  return path === '/' || /^\/(?:home|work|wiki|reading)(?:\/[^/]+)?$/.test(path);
 }
 
 function formatDate(value) {
@@ -393,7 +393,7 @@ async function render() {
     } else if (section === 'reading') {
       await readingView(token);
     } else {
-      document.title = section === 'craft' ? 'Craft | Yash Gaur' : 'Yash Gaur — Work';
+      document.title = section === 'work' ? 'Work | Yash Gaur' : 'Yash Gaur — Work';
     }
     if (token === state.renderToken) {
       window.scrollTo(0, 0);
@@ -421,7 +421,7 @@ window.addEventListener('keydown', event => {
   if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey ||
       /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement?.tagName || '') ||
       document.activeElement?.isContentEditable) return;
-  const target = { '1': '/home', '2': '/craft', '3': '/work', '4': '/wiki', '5': '/reading' }[event.key];
+  const target = { '1': '/home', '2': '/work', '3': '/wiki', '4': '/reading' }[event.key];
   if (target) {
     history.pushState({}, '', target);
     render();

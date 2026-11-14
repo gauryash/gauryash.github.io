@@ -32,17 +32,16 @@ jobs:
           from pathlib import Path
 
           site = Path('_site')
-          for route in ('home', 'craft', 'work', 'wiki', 'reading'):
+          for route in ('home', 'work', 'wiki', 'reading'):
               target = site / route / 'index.html'
               target.parent.mkdir(parents=True, exist_ok=True)
               shutil.copyfile(site / 'index.html', target)
 
           posts = json.loads((site / 'posts' / 'index.json').read_text())
           for post in posts:
-              for route in ('wiki', 'work'):
-                  target = site / route / post['slug'] / 'index.html'
-                  target.parent.mkdir(parents=True, exist_ok=True)
-                  shutil.copyfile(site / 'index.html', target)
+              target = site / 'wiki' / post['slug'] / 'index.html'
+              target.parent.mkdir(parents=True, exist_ok=True)
+              shutil.copyfile(site / 'index.html', target)
           PY
       - name: Upload static site
         uses: actions/upload-pages-artifact@v4

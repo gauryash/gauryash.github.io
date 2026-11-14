@@ -6,13 +6,12 @@ Edit these files:
 
 - `index.html` for text and links
 - `styles.css` for design and reader layout
-- `script.js` for routing, the theme button, notes, and keys 1–3
+- `script.js` for routing, the theme button, notes, and keys 1–4
 
 Published routes:
 
 - `/` and `/home` — introduction
-- `/craft` — projects and skills
-- `/work` — experience
+- `/work` — experience and skills
 - `/wiki` — notes index
 - `/wiki/<post-slug>` — an individual note
 - `/reading` — reading list
