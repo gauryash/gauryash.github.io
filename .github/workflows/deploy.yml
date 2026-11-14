@@ -24,6 +24,25 @@ jobs:
           cp index.html _site/index.html
           cp index.html _site/404.html
           cp styles.css script.js favicon.svg _site/
+          cp -R posts _site/posts
+          cp references.md _site/references.md
+          python3 - <<'PY'
+          import json
+          import shutil
+          from pathlib import Path
+
+          site = Path('_site')
+          for route in ('home', 'craft', 'work', 'wiki', 'reading'):
+              target = site / route / 'index.html'
+              target.parent.mkdir(parents=True, exist_ok=True)
+              shutil.copyfile(site / 'index.html', target)
+
+          posts = json.loads((site / 'posts' / 'index.json').read_text())
+          for post in posts:
+              target = site / 'work' / post['slug'] / 'index.html'
+              target.parent.mkdir(parents=True, exist_ok=True)
+              shutil.copyfile(site / 'index.html', target)
+          PY
       - name: Upload static site
         uses: actions/upload-pages-artifact@v4
         with:

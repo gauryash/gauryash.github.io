@@ -1,12 +1,21 @@
 # Yash Gaur
 
-This is my personal site.
+This is my personal site and notes reader.
 
 Edit these files:
 
 - `index.html` for text and links
-- `styles.css` for design
-- `script.js` for the theme button and keys 1–3
+- `styles.css` for design and reader layout
+- `script.js` for routing, the theme button, notes, and keys 1–3
+
+Published routes:
+
+- `/` and `/home` — introduction
+- `/craft` — projects and skills
+- `/work` — experience and notes
+- `/work/<post-slug>` — an individual note
+- `/wiki` — notes index
+- `/reading` — reading list
 
 Open `index.html` to view the site.
 
