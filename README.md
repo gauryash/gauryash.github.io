@@ -12,7 +12,7 @@ Published routes:
 
 - `/` and `/home` — introduction
 - `/craft` — projects and skills
-- `/work` — experience and notes
+- `/work` — experience
 - `/wiki` — notes index
 - `/wiki/<post-slug>` — an individual note
 - `/reading` — reading list

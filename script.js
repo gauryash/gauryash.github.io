@@ -2,7 +2,6 @@ const themeButton = document.getElementById('theme-toggle');
 const preferredDark = matchMedia('(prefers-color-scheme: dark)');
 const sections = [...document.querySelectorAll('main > .view')];
 const tabs = [...document.querySelectorAll('.tab')];
-const workNotes = document.getElementById('work-notes');
 const wikiContent = document.getElementById('wiki-content');
 const readingContent = document.getElementById('reading-content');
 const state = { posts: null, renderToken: 0, tocObserver: null };
@@ -278,9 +277,7 @@ function postRow(post) {
 function listingView(posts, heading = 'Notes') {
   return `<section class="notes-listing view" aria-labelledby="notes-list-heading">
     <h2 class="section-kicker" id="notes-list-heading">${heading}</h2>
-    <p class="annotation">A small collection of notes and case studies. Each row opens the source Markdown in the same reader.</p>
     <div class="notes-post-list">${posts.length ? posts.map(postRow).join('') : '<p class="annotation">No posts are listed yet.</p>'}</div>
-    <p class="annotation notes-reading-link"><a class="chip" href="${routeHref('/reading')}">Open reading list ↗</a></p>
   </section>`;
 }
 
@@ -379,17 +376,20 @@ async function render() {
   const token = ++state.renderToken;
   const parts = route();
   const section = sectionFor(parts);
+  if (section === 'work' && parts[1]) {
+    history.replaceState({}, '', `/wiki/${encodeURIComponent(parts[1])}`);
+    render();
+    return;
+  }
   const selected = showSection(section);
 
   try {
-    if (section === 'work' || section === 'wiki') {
+    if (section === 'wiki') {
       const posts = await ensurePosts();
       if (token !== state.renderToken) return;
-      const host = section === 'work' ? workNotes : wikiContent;
-      if (parts[1]) await detailRoute(host, posts, parts[1], token);
-      else host.innerHTML = listingView(posts, section === 'work' ? 'Notes from the wiki' : 'Wiki notes');
-      if (section === 'work' && !parts[1]) document.title = 'Yash Gaur — Work';
-      if (section === 'wiki' && !parts[1]) document.title = 'Wiki | Yash Gaur';
+      if (parts[1]) await detailRoute(wikiContent, posts, parts[1], token);
+      else wikiContent.innerHTML = listingView(posts, 'Wiki');
+      if (!parts[1]) document.title = 'Wiki | Yash Gaur';
     } else if (section === 'reading') {
       await readingView(token);
     } else {
@@ -401,7 +401,7 @@ async function render() {
     }
   } catch (error) {
     if (token === state.renderToken) {
-      const host = section === 'work' ? workNotes : section === 'wiki' ? wikiContent : readingContent;
+      const host = section === 'wiki' ? wikiContent : readingContent;
       host.innerHTML = errorView(error.message || 'Unknown error.');
     }
   }
