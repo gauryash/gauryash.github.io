@@ -421,7 +421,7 @@ window.addEventListener('keydown', event => {
   if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey ||
       /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement?.tagName || '') ||
       document.activeElement?.isContentEditable) return;
-  const target = { '1': '/home', '2': '/craft', '3': '/work' }[event.key];
+  const target = { '1': '/home', '2': '/craft', '3': '/work', '4': '/wiki', '5': '/reading' }[event.key];
   if (target) {
     history.pushState({}, '', target);
     render();
