@@ -46,7 +46,7 @@
 - **The Art of Assembly Language** - https://www.plantation-productions.com/Webster/www.artofasm.com/Linux/HTML/AoATOC.html
 - **Modern C (Jens Gustedt)** - https://inria.hal.science/hal-02383654v2/file/modernC.pdf
 - **Modernes C++ (Table of Content)** - https://www.modernescpp.com/index.php/table-of-content/
-- **The Go Programming Language** - https://www.gopl.io/
+- **The Go Programming Language** - https://www.gopl.io/ https://github.com/uber-go/guide/blob/master/style.md#introduction https://100go.co/
 - **gopl.io repo** - https://github.com/adonovan/gopl.io
 - **Cornell CS 6120: Advanced Compilers Self-Guided Course** - https://www.cs.cornell.edu/courses/cs6120/2025fa/self-guided/
 
