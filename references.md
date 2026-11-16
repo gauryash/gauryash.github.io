@@ -49,6 +49,7 @@
 - **The Go Programming Language** - https://www.gopl.io/ https://github.com/uber-go/guide/blob/master/style.md#introduction https://100go.co/
 - **gopl.io repo** - https://github.com/adonovan/gopl.io
 - **Cornell CS 6120: Advanced Compilers Self-Guided Course** - https://www.cs.cornell.edu/courses/cs6120/2025fa/self-guided/
+- Introduction to Compilers and Language Design - https://dthain.github.io/books/compiler/compilerbook.pdf
 
 ## Hardware / Embedded / Architecture
 
